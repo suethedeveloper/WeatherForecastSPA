@@ -1,9 +1,12 @@
 //// CONTROLLERS
-weatherApp.controller('mainCtrl',['$scope', 'cityService', function($scope, cityService){
+weatherApp.controller('mainCtrl',['$scope', '$location', 'cityService', function($scope, $location, cityService){
     $scope.city = cityService.city;
     $scope.$watch('city', function(){
         cityService.city = $scope.city;
     });
+    $scope.submit = function(){
+      $location.path("/forecast");
+    };
 }]);
 
 weatherApp.controller('forecastCtrl',['$scope', '$resource', '$routeParams', 'cityService', function($scope, $resource, $routeParams, cityService){
